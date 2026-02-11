@@ -1,8 +1,27 @@
-version: "3.9"
 services:
+# web_server の立ち上げ
   web:
     image: nginx:latest
     ports:
       - "8080:80"
     volumes:
       - ./html:/usr/share/nginx/html
+    container_name: web_server
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: budget_db
+    ports:
+      - "3306:3306"
+    volumes: # mysqlのデータを/var/lib/mysql/dataにマウントし永続化
+      - mysql_data:/var/lib/mysql
+    container_name: mysql_db
+
+# serviceで使うボリュームをここで定義
+volumes:
+  mysql_data:
+    driver: local
