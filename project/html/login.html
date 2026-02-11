@@ -2,10 +2,17 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>家計簿アプリ</title>
+    <title>ログイン画面</title>
   </head>
-  <body>
-    <div class="header">
-      <h1>🏦 家計簿アプリ</h1>
-      <button id="logoutBtn">ログアウト</button>
-    </div>
+
+<body>
+    <h1>ログイン画面</h1>
+    <form id="loginForm">
+        <label for="username">ユーザー名:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">パスワード:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button onclick="location.href='index.html'">ログイン</button>
+</body>
