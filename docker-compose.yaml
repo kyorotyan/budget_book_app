@@ -11,15 +11,36 @@ services:
   database:
     image: postgres:latest
     environment:
-      POSTGRES_ROOT_PASSWORD: rootpassword
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: budget_db
     ports:
       - "5432:5432"
     volumes: # postgresのデータを/var/lib/postgresql/dataにマウントし永続化
-      - postgres_data:/var/lib/postgresql
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/sql:/docker-entrypoint-initdb.d
     container_name: database
+
+  api:
+    image: node:18
+    working_dir: /app
+    command: ["sh", "-c", "npm install && node server.js"]
+    environment:
+      PORT: 3000
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: budget_db
+      JWT_SECRET: change_me
+      CORS_ORIGIN: http://localhost:8080
+    volumes:
+      - ./backend:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+    container_name: api_server
 
 # サービスで使用する volume を定義
 volumes:

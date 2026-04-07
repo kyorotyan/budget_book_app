@@ -4,10 +4,9 @@
     <meta charset="utf-8">
     <title>ログイン画面</title>
 </head>
-test
 <body>
     <h1>ログイン画面</h1>
-    <form id="loginForm" onsubmit="event.preventDefault(); location.href='home.html';">
+    <form id="loginForm">
         <label for="username">ユーザー名:</label>
         <input type="text" id="username" name="username" required>
         <br>
@@ -16,6 +15,8 @@ test
         <br>
         <button type="submit">ログイン</button>
     </form>
+    <p id="loginMessage"></p>
+    <p><a href="register.html">アカウント作成</a></p>
+    <script src="js/auth.js"></script>
 </body>
 </html>
-test
