@@ -17,14 +17,14 @@ services:
     ports:
       - "5432:5432"
     volumes: # postgresのデータを/var/lib/postgresql/dataにマウントし永続化
-      - postgres_data:/var/lib/postgresql/data
-      - ./backend/sql:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql
+      - ./database/sql:/docker-entrypoint-initdb.d
     container_name: database
 
-  api:
-    image: node:18
+  backend:
+    image: python:3.11-slim
     working_dir: /app
-    command: ["sh", "-c", "npm install && node server.js"]
+    command: ["sh", "-c", "pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 3000"]
     environment:
       PORT: 3000
       DB_HOST: database
@@ -40,7 +40,7 @@ services:
       - "3000:3000"
     depends_on:
       - database
-    container_name: api_server
+    container_name: backend
 
 # サービスで使用する volume を定義
 volumes:

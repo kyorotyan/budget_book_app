@@ -11,8 +11,8 @@
 - **ユーザー認証（任意）**: ローカルのみでも可
 
 ## 使用する技術スタック 🛠️
-- ログイン機能は jot を使用する(詳しくは調べる) → バックエンドの処理をする
-
+- バックエンド: Python/FastAPI
+- ログイン方式: JWT
 ## ローカル実行（ログイン機能）
 1. `docker-compose up -d`（DB と API が起動します）
 2. ブラウザで `http://localhost:8080` を開く
@@ -20,6 +20,6 @@
 ## API をローカルで動かす場合
 1. `docker-compose up -d database`
 2. `backend` で依存関係をインストールして API を起動
-	- `npm install`
-	- `npm start`
+	- `pip install -r requirements.txt`
+	- `uvicorn main:app --host 0.0.0.0 --port 3000`
 3. ブラウザで `http://localhost:8080` を開く
