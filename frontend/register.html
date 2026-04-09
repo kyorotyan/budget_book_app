@@ -2,21 +2,22 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>ログイン画面</title>
+    <title>ユーザー登録</title>
 </head>
 <body>
-    <h1>ログイン画面</h1>
-    <form id="loginForm">
+    <h1>ユーザー登録</h1>
+    <form id="registerForm">
         <label for="username">ユーザー名:</label>
         <input type="text" id="username" name="username" required>
         <br>
         <label for="password">パスワード:</label>
         <input type="password" id="password" name="password" required>
         <br>
-        <button type="submit">ログイン</button>
+        <button type="submit">登録</button>
     </form>
     <p id="errorMsg" style="color:red; display:none;"></p>
-    <p>アカウントをお持ちでない方は<a href="register.html">こちらから登録</a></p>
+    <p id="successMsg" style="color:green; display:none;"></p>
+    <p>すでにアカウントをお持ちの方は<a href="index.html">こちらからログイン</a></p>
     <script src="js/auth.js"></script>
 </body>
 </html>

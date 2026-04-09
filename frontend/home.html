@@ -13,6 +13,7 @@
     <script>
       // ログアウト処理
       document.getElementById('logoutBtn').addEventListener('click', function() {
+        localStorage.removeItem('access_token');
         // ログイン画面へ戻る
         window.location.href = 'index.html';
       });

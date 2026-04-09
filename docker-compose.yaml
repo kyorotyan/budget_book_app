@@ -21,6 +21,18 @@ services:
       - postgres_data:/var/lib/postgresql
     container_name: database
 
+# バックエンドAPIサーバ
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://user:password@database:5432/budget_db
+      SECRET_KEY: change-me-in-production-use-a-long-random-string
+    depends_on:
+      - database
+    container_name: backend
+
 # サービスで使用する volume を定義
 volumes:
   postgres_data:
