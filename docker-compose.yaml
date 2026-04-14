@@ -17,7 +17,7 @@ services:
     ports:
       - "5432:5432"
     volumes: # postgresのデータを/var/lib/postgresql/dataにマウントし永続化
-      - postgres_data:/var/lib/postgresql
+      - postgres_data:/var/lib/postgresql/data
       - ./database/sql:/docker-entrypoint-initdb.d
     container_name: database
 
