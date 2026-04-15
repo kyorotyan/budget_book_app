@@ -43,8 +43,8 @@ def register(payload: dict):
     if not username or not password:
         raise HTTPException(status_code=400, detail="username と password は必須です")
 
-    if len(password) < 8:
-        raise HTTPException(status_code=400, detail="password は8文字以上にしてください")
+    if len(password) < 3:
+        raise HTTPException(status_code=400, detail="password は3文字以上にしてください")
 
     with get_db_conn() as conn:
         with conn.cursor() as cur:

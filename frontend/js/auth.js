@@ -10,6 +10,15 @@ const setMessage = (id, message, isError) => {
   target.style.color = isError ? "red" : "green";
 };
 
+const extractErrorMessage = async (res, fallbackMessage) => {
+  try {
+    const data = await res.json();
+    return data.detail || data.message || fallbackMessage;
+  } catch {
+    return fallbackMessage;
+  }
+};
+
 if (loginForm) {
   loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -24,11 +33,13 @@ if (loginForm) {
         body: JSON.stringify({ username, password })
       });
 
-      const data = await res.json();
       if (!res.ok) {
-        setMessage("loginMessage", data.message || "ログインに失敗しました", true);
+        const errorMessage = await extractErrorMessage(res, "ログインに失敗しました");
+        setMessage("loginMessage", errorMessage, true);
         return;
       }
+
+      const data = await res.json();
 
       localStorage.setItem("authToken", data.token);
       window.location.href = "home.html";
@@ -45,6 +56,11 @@ if (registerForm) {
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;
 
+    if (password.length < 3) {
+      setMessage("registerMessage", "パスワードは3文字以上で入力してください", true);
+      return;
+    }
+
     try {
       const res = await fetch(`${API_BASE}/api/auth/register`, {
         method: "POST",
@@ -52,13 +68,15 @@ if (registerForm) {
         body: JSON.stringify({ username, password })
       });
 
-      const data = await res.json();
       if (!res.ok) {
-        setMessage("registerMessage", data.message || "登録に失敗しました", true);
+        const errorMessage = await extractErrorMessage(res, "登録に失敗しました");
+        setMessage("registerMessage", errorMessage, true);
         return;
       }
 
-      setMessage("registerMessage", "登録が完了しました。ログインしてください。", false);
+      const data = await res.json();
+
+      setMessage("registerMessage", data.message || "登録が完了しました。ログインしてください。", false);
       setTimeout(() => {
         window.location.href = "index.html";
       }, 1200);
