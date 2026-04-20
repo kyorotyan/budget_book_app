@@ -1,0 +1,35 @@
+name: Notify Discord on Push
+
+on:
+  push:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send push notification to Discord
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+          ACTOR: ${{ github.actor }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+          COMMIT_URL: ${{ github.event.head_commit.url }}
+        run: |
+          python - << 'PY' > payload.json
+          import json, os
+          content = (
+              "🚀 GitHub Push通知\n"
+              f"Repo: {os.getenv('REPO')}\n"
+              f"Branch: {os.getenv('BRANCH')}\n"
+              f"By: {os.getenv('ACTOR')}\n"
+              f"Message: {os.getenv('COMMIT_MSG')}\n"
+              f"Commit: {os.getenv('COMMIT_URL')}"
+          )
+          print(json.dumps({"content": content}, ensure_ascii=False))
+          PY
+
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            --data @payload.json \
+            "$DISCORD_WEBHOOK_URL"
