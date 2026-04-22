@@ -3,11 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title>家計簿アプリ</title>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <div class="header">
       <h1>🏦 家計簿アプリ</h1>
-      <button id="logoutBtn">ログアウト</button>
+      <h2>支出・収入の管理</h2>
+      <div class="action-buttons">
+        <button id="expenseBtn">
+          <img src="images/money_fly_yen.png" alt="支出アイコン" width="100" height="100">
+          <span>支出</span>
+        </button>
+        <button id="incomeBtn">
+          <img src="images/money_fueru.png" alt="収入アイコン" width="100" height="100">
+          <span>収入</span>
+        </button>
+      </div>
+      <div class="logout-area">
+        <button id="logoutBtn">ログアウト</button>
+      </div>
     </div>
     <script src="js/home.js"></script>
   </body>

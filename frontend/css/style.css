@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f4ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 40px 60px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: black;
+  margin-bottom: 8px;
+}
+
+.header h2 {
+  font-size: 1.1rem;
+  color: #888;
+  font-weight: normal;
+  margin-bottom: 24px;
+}
+
+#logoutBtn {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.logout-area {
+  text-align: center;
+}
+
+#expenseBtn, #incomeBtn {
+  background-color: white;
+  color: black;
+  border: 1px solid #aaa;
+  padding: 20px 50px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+#expenseBtn:hover, #incomeBtn:hover {
+  background-color: #ddd;
+}
+
+#logoutBtn:hover {
+  background-color: #e05555;
+}
