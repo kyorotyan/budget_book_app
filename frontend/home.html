@@ -9,15 +9,43 @@
     <div class="header">
       <h1>🏦 家計簿アプリ</h1>
       <h2>支出・収入の管理</h2>
-      <div class="action-buttons">
-        <button id="expenseBtn">
-          <img src="images/money_fly_yen.png" alt="支出アイコン" width="100" height="100">
-          <span>支出</span>
-        </button>
-        <button id="incomeBtn">
-          <img src="images/money_fueru.png" alt="収入アイコン" width="100" height="100">
-          <span>収入</span>
-        </button>
+      <div class="form-wrapper">
+        <p class="action-label">種類</p>
+        <div class="action-buttons">
+          <button id="expenseBtn">
+            <img src="images/money_fly_yen.png" alt="支出アイコン" width="100" height="100">
+            <span>支出</span>
+          </button>
+          <button id="incomeBtn">
+            <img src="images/money_fueru.png" alt="収入アイコン" width="100" height="100">
+            <span>収入</span>
+          </button>
+        </div>
+        <p class="action-label">金額</p>
+        <div class="money">
+          <input type="number" id="amountInput" placeholder="金額を入力" inputmode="numeric">
+          <span class="currency-label">円</span>
+        </div>
+        <p class="action-label">カテゴリ</p>
+        <select id="categorySelect">
+          <option value="">選択してください</option>
+          <optgroup label="支出">
+            <option value="food">食費</option>
+            <option value="transport">交通費</option>
+            <option value="utility">光熱水費</option>
+            <option value="rent">家賞</option>
+            <option value="medical">医療費</option>
+            <option value="entertainment">娯楽費</option>
+            <option value="clothing">衣財</option>
+            <option value="other_expense">その他（支出）</option>
+          </optgroup>
+          <optgroup label="収入">
+            <option value="salary">給料</option>
+            <option value="bonus">ボーナス</option>
+            <option value="freelance">副業・フリーランス</option>
+            <option value="other_income">その他（収入）</option>
+          </optgroup>
+        </select>
       </div>
       <div class="logout-area">
         <button id="logoutBtn">ログアウト</button>
