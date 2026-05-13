@@ -1,0 +1,178 @@
+/* ============================================
+   リセット
+   すべての要素のデフォルトの余白をゼロにし、
+   widthにpaddingとborderを含めるボックスモデルに統一する
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   ボディ全体
+   画面全体を淡い青みがかった背景色にし、
+   flexboxで中央揃えにして縦横ともにセンタリングする
+   ============================================ */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f4ff;
+  display: flex;
+  justify-content: center; /* 水平方向の中央揃え */
+  align-items: center;     /* 垂直方向の中央揃え */
+  min-height: 100vh;       /* 画面の高さいっぱいに広げる */
+}
+
+/* ============================================
+   ヘッダーカード
+   白背景の角丸カードとして表示し、影をつけて浮いて見せる
+   ============================================ */
+.header {
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 16px;               /* 角を丸くする */
+  padding: 40px 60px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 薄い影 */
+}
+
+/* メインタイトル */
+.header h1 {
+  font-size: 2.5rem;
+  color: black;
+  margin-bottom: 8px;
+}
+
+/* サブタイトル（ユーザー名など） */
+.header h2 {
+  font-size: 1.1rem;
+  color: #888;         /* グレーで控えめに表示 */
+  font-weight: normal;
+  margin-bottom: 24px;
+}
+
+/* ============================================
+   ログアウトボタン
+   赤系の背景色でアクションを強調し、
+   ホバー時に少し濃くなるトランジションを付ける
+   ============================================ */
+#logoutBtn {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s; /* 色変化をなめらかに */
+}
+
+/* ログアウトボタンを中央揃えにするラッパー */
+.logout-area {
+  text-align: center;
+}
+
+/* ホバー時：ログアウトボタンを濃い赤に変化 */
+#logoutBtn:hover {
+  background-color: #e05555;
+}
+
+/* ============================================
+   アクションボタンエリア
+   支出・収入ボタンを横並びで中央に配置する
+   ============================================ */
+/* 種類・金額セクションを包むラッパー：ボタン幅に縮めてページ中央に置く */
+.form-wrapper {
+  width: fit-content;
+  margin: 0 auto 24px;
+  text-align: left;
+}
+
+.action-label {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;           /* ボタン間の隙間 */
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+/* ============================================
+支出・収入ボタンエリア
+白背景の枠線ありボタン。アイコンとテキストを縦並びにする
+============================================ */
+#expenseBtn, #incomeBtn {
+    background-color: white;
+    color: black;
+    border: 1px solid #aaa;
+    padding: 20px 50px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    flex-direction: column; /* アイコンとテキストを縦並びに */
+    align-items: center;
+    gap: 8px;               /* アイコンとテキストの間隔 */
+}
+
+/* ホバー時：薄いグレーで視覚フィードバック */
+#expenseBtn:hover, #incomeBtn:hover {
+    background-color: #ddd;
+}
+
+/* ============================================
+金額入力エリア
+============================================ */
+/* 金額入力エリア：「円」をinput内に重ねるため相対位置 */
+.money {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* 金額入力欄 */
+.money input {
+  width: 100%;
+  padding: 10px 36px 10px 12px; /* 右側に「円」のスペースを確保 */
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+/* スピナー（上下矢印）を非表示 */
+/* type="number" を使う限り、PC の主要ブラウザでは設定しないと自動でスピナーが入る */
+.money input::-webkit-inner-spin-button,
+.money input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* 「円」をinput内右側に薄く表示 */
+.currency-label {
+  position: absolute;
+  right: 12px;
+  font-size: 0.9rem;
+  color: #bbb;
+  pointer-events: none; /* クリックを透過させる */
+}
+
+/* ============================================
+カテゴリ選択セレクトボックスエリア
+============================================ */
+#categorySelect {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+  cursor: pointer;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
